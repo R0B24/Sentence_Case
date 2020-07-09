@@ -1,0 +1,31 @@
+def sentence_case(string):
+    ending_punctuation = []
+    for i in range(len(string)):
+        if string[i]=='.':
+            ending_punctuation.append('.')
+        elif string[i]=='?':
+            ending_punctuation.append('?')
+        elif string[i]=='!':
+            ending_punctuation.append('!')
+
+    string = string.replace('?','.').replace('!','.')
+    sentence = string.split('.')
+    while '' in sentence:
+        sentence.remove('')
+    inddex=[]
+    for i in range(len(sentence)):
+        sentence[i]=sentence[i].lstrip(' ')
+        sentence[i]=sentence[i][0].upper()+sentence[i][1:]
+
+    new_string = ''
+    for i in range(len(sentence)):
+        new_string += sentence[i]
+        new_string += ending_punctuation[i]+' '
+    new_string = new_string[:-1]
+
+    return new_string
+    return sentence
+
+user_string = input("Enter a few sentences in all lowercase: ")
+print('\nIn sentence case, your sentence look like')
+print(sentence_case(user_string))
